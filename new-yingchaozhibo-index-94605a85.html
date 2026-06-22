@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英超直播 · 观赛新思路</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fde9db 0%, #fcd4b5 50%, #fbc69d 100%);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            line-height: 1.7;
+            color: #3b2a1f;
+        }
+
+        .page-wrapper {
+            max-width: 860px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 32px 32px;
+            padding: 2.8rem 2.5rem 3rem;
+            box-shadow: 0 18px 36px -12px rgba(150, 80, 30, 0.25), 0 4px 18px rgba(255, 215, 170, 0.4);
+            transition: box-shadow 0.2s ease;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #8b4f2c;
+            margin-bottom: 0.25rem;
+            border-left: 6px solid #e67e3a;
+            padding-left: 1.2rem;
+        }
+
+        .subhead {
+            font-size: 1.05rem;
+            color: #7a5b44;
+            margin-top: -0.2rem;
+            margin-bottom: 1.8rem;
+            padding-left: 1.8rem;
+            font-weight: 350;
+        }
+
+        .intro {
+            font-size: 1.08rem;
+            background: #fff7f0;
+            padding: 1.2rem 1.7rem;
+            border-radius: 28px;
+            margin-bottom: 2.2rem;
+            box-shadow: inset 0 1px 6px rgba(225, 150, 90, 0.08);
+        }
+
+        .intro p {
+            max-width: 690px;
+        }
+
+        .grid-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2.2rem 0 2rem;
+        }
+
+        .highlight-item {
+            flex: 1 1 180px;
+            background: #fef5ec;
+            border-radius: 28px;
+            padding: 1.3rem 1.2rem 1.1rem;
+            box-shadow: 0 6px 12px -6px rgba(160, 90, 40, 0.12);
+            transition: transform 0.15s, background 0.15s;
+        }
+
+        .highlight-item:hover {
+            background: #ffefe2;
+            transform: translateY(-4px);
+        }
+
+        .highlight-item .emoji-bg {
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .highlight-item h3 {
+            font-size: 1.18rem;
+            font-weight: 550;
+            color: #864e2c;
+            margin-bottom: 0.25rem;
+        }
+
+        .highlight-item p {
+            font-size: 0.94rem;
+            color: #5e4635;
+        }
+
+        .usage-section {
+            background: #f8ede2;
+            border-radius: 28px;
+            padding: 1.7rem 1.8rem;
+            margin: 2rem 0 2.1rem;
+        }
+
+        .usage-section h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #864e2c;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .usage-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .usage-section li {
+            padding: 0.4rem 0 0.4rem 1.8rem;
+            position: relative;
+            font-size: 1rem;
+            color: #3f3229;
+            border-bottom: 1px dashed #e5cdb7;
+        }
+
+        .usage-section li:last-child {
+            border-bottom: none;
+        }
+
+        .usage-section li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #d97c3e;
+            font-weight: bold;
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .note-box {
+            background: #e8d9ca;
+            padding: 1.1rem 1.6rem;
+            border-radius: 24px;
+            margin-top: 2.2rem;
+            font-size: 0.95rem;
+            color: #3d2d21;
+            border-left: 6px solid #c7814f;
+        }
+
+        .faq-mini {
+            margin: 2.4rem 0 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .faq-mini details {
+            background: #fff8f1;
+            border-radius: 40px;
+            padding: 0.8rem 1.6rem 0.8rem 2rem;
+            cursor: pointer;
+            border: 1px solid #f1dbc9;
+            transition: background 0.1s;
+        }
+
+        .faq-mini details[open] {
+            background: #fef0e4;
+            padding-bottom: 1.1rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #7a4c2e;
+            font-size: 1.02rem;
+            outline: none;
+        }
+
+        .faq-mini details p {
+            padding: 0.5rem 0.1rem 0.1rem;
+            color: #4d3a2c;
+            font-size: 0.95rem;
+        }
+
+        .link-sentence {
+            background: white;
+            padding: 1rem 1.8rem;
+            border-radius: 48px;
+            display: inline-block;
+            margin-top: 0.2rem;
+            font-size: 1.08rem;
+            background: #fdf3e9;
+            border: 1px solid #ebd5c2;
+        }
+
+        a {
+            color: #b45f2b;
+            text-decoration: none;
+            font-weight: 520;
+            border-bottom: 2px solid rgba(215, 125, 60, 0.3);
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        a:hover {
+            color: #7c401d;
+            border-bottom-color: #b45f2b;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #695445;
+            text-align: center;
+            opacity: 0.8;
+            border-top: 1px solid #dbbca4;
+            padding-top: 1.6rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.6rem;
+            }
+
+            .hero-card {
+                padding: 1.8rem 1.2rem 2rem;
+                border-radius: 32px;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+                padding-left: 0.8rem;
+            }
+
+            .subhead {
+                padding-left: 1rem;
+                font-size: 0.95rem;
+            }
+
+            .intro {
+                padding: 1rem 1.2rem;
+                font-size: 1rem;
+            }
+
+            .grid-highlights {
+                flex-direction: column;
+            }
+
+            .highlight-item {
+                flex: 1 1 auto;
+            }
+
+            .usage-section {
+                padding: 1.2rem 1rem;
+            }
+
+            .link-sentence {
+                padding: 0.7rem 1rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-card {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .faq-mini details {
+                padding: 0.6rem 1rem 0.6rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="hero-card">
+            <h1>英超直播</h1>
+            <div class="subhead">不只是转播，更是对比赛的沉浸感</div>
+
+            <div class="intro">
+                <p>英格兰足球超级联赛的每一轮较量，都凝聚着战术博弈与瞬间才华。我们围绕「<strong>英超直播</strong>」构建了一个信息轻巧、聚焦赛况的内容场域——不是聚合平台，而是一扇通向实时赛事的干净窗口。无论你关注争冠悬念、保级缠斗，还是新援首秀，这里都能帮你快速定位比赛脉搏。</p>
+            </div>
+
+            <div class="grid-highlights">
+                <div class="highlight-item">
+                    <span class="emoji-bg">⚽</span>
+                    <h3>赛程一目了然</h3>
+                    <p>按轮次排列的对阵与时间，提前规划你的看球日程。</p>
+                </div>
+                <div class="highlight-item">
+                    <span class="emoji-bg">📡</span>
+                    <h3>信号指向清晰</h3>
+                    <p>每个比赛日提供可靠的直播引导，减少寻找成本。</p>
+                </div>
+                <div class="highlight-item">
+                    <span class="emoji-bg">🧠</span>
+                    <h3>轻资讯伴随</h3>
+                    <p>赛前展望、关键数据、伤停提示，不冗长但有价值。</p>
+                </div>
+            </div>
+
+            <div class="usage-section">
+                <h2>🕹️ 使用场景参考</h2>
+                <ul>
+                    <li>周末打开页面，按时间线锁定焦点战，不错过开球。</li>
+                    <li>周中补赛或杯赛夹缝中的联赛，快速确认转播渠道。</li>
+                    <li>与朋友聊球时，顺手查一下实时比分或阵容变动。</li>
+                    <li>新赛季初期，通过结构化列表熟悉各队节奏与轮换。</li>
+                </ul>
+            </div>
+
+            <div class="faq-mini">
+                <details>
+                    <summary>这个页面提供直播源吗？</summary>
+                    <p>我们聚焦于导航与信息聚合，不直接托管或提供视频流。页面内的链接会引导至官方或授权转播渠道，请留意相关版权说明。</p>
+                </details>
+                <details>
+                    <summary>是否需要注册或付费？</summary>
+                    <p>浏览赛程与基础信息完全免费，部分外部转播平台可能要求订阅，以各平台规则为准。</p>
+                </details>
+                <details>
+                    <summary>数据更新频率如何？</summary>
+                    <p>赛程基于官方发布，通常在赛前24小时确认所有细节。比赛日实时状态会尽可能同步，但建议以转播方显示为准。</p>
+                </details>
+            </div>
+
+            <div class="link-sentence">
+                🏟️ 现在开始关注比赛 —— <a href="https://new-yingchaozhibo.com">英超直播</a> 页面已整理好下一轮对阵，从开场哨到终场分析，陪伴你的每个比赛周末。
+            </div>
+
+            <div class="note-box">
+                📌 温馨提示：观看直播时请留意当地转播权归属，合理选择网络环境。我们鼓励通过正规渠道感受球场氛围。
+            </div>
+
+            <div class="footer-note">
+                内容仅供观赛参考 · 非官方站点 · 更关心你的看球体验
+            </div>
+        </div>
+    </div>
+</body>
+</html>
