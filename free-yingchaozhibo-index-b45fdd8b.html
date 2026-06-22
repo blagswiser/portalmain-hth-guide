@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英超直播 · 简明指南 & 访问提醒</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f9fc;
+      color: #1a2b3c;
+      line-height: 1.6;
+      padding: 20px 16px 40px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 主视觉 Hero */
+    .hero {
+      background: linear-gradient(145deg, #dcecf5 0%, #e6f2f9 100%);
+      border-radius: 32px;
+      padding: 40px 28px 36px;
+      margin-bottom: 36px;
+      border: 1px solid rgba(0, 128, 128, 0.12);
+      box-shadow: 0 8px 24px rgba(20, 90, 100, 0.06);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #0b6e6e;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      padding: 4px 14px;
+      border-radius: 40px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0a3b3b;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      max-width: 700px;
+      color: #1f4249;
+      font-weight: 400;
+    }
+
+    .hero .meta-note {
+      margin-top: 24px;
+      font-size: 0.9rem;
+      color: #2f5d63;
+      border-left: 3px solid #1d8e8e;
+      padding-left: 16px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 0 8px 8px 0;
+      display: inline-block;
+      padding: 10px 16px;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    @media (min-width: 600px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 26px 22px 24px;
+      box-shadow: 0 4px 12px rgba(0,70,70,0.04);
+      border: 1px solid #e2edf0;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      border-color: #45b5b5;
+      box-shadow: 0 8px 20px rgba(6, 99, 99, 0.08);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      background: #def0f0;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b6e6e;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #0a3b3b;
+      margin-bottom: 10px;
+    }
+
+    .card p, .card ul {
+      font-size: 0.95rem;
+      color: #2a4a4f;
+      margin-bottom: 8px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      padding: 4px 0 4px 20px;
+      position: relative;
+    }
+
+    .card li::before {
+      content: "▸";
+      position: absolute;
+      left: 2px;
+      color: #2d9b9b;
+      font-weight: 600;
+    }
+
+    .card .tag {
+      display: inline-block;
+      background: #e0f0ef;
+      color: #0b5e5e;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 2px 12px;
+      border-radius: 40px;
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    /* 自然链接段落 + 提示区块 */
+    .info-block {
+      background: #eef6f9;
+      border-radius: 28px;
+      padding: 28px 28px 32px;
+      margin-top: 12px;
+      margin-bottom: 36px;
+      border: 1px solid #c8dfe3;
+    }
+
+    .info-block h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #0a3b3b;
+      margin-bottom: 16px;
+    }
+
+    .info-block p {
+      font-size: 1rem;
+      color: #1c3c41;
+      margin-bottom: 18px;
+    }
+
+    .info-block a {
+      color: #0a6b6b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1.5px solid #49adad;
+      padding-bottom: 1px;
+    }
+
+    .info-block a:hover {
+      background: #d1ecec;
+    }
+
+    .faq-mini {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    @media (min-width: 600px) {
+      .faq-mini {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .faq-item {
+      background: rgba(255,255,255,0.5);
+      border-radius: 20px;
+      padding: 18px 20px;
+      border-left: 4px solid #2d9b9b;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 600;
+      color: #0a3b3b;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .faq-item span {
+      font-size: 0.92rem;
+      color: #2a5359;
+    }
+
+    .access-note {
+      background: white;
+      border-radius: 28px;
+      padding: 22px 28px;
+      border: 1px dashed #3fa8a8;
+      margin-top: 24px;
+    }
+
+    .access-note p {
+      font-size: 0.95rem;
+      color: #174d4d;
+    }
+
+    .access-note a {
+      color: #0b6e6e;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1.5px;
+      text-decoration-color: #4cb2b2;
+    }
+
+    .footer-meta {
+      font-size: 0.8rem;
+      color: #6e8e92;
+      text-align: center;
+      margin-top: 48px;
+      border-top: 1px solid #d2e4e7;
+      padding-top: 24px;
+    }
+
+    /* 移动端微调 */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .hero {
+        padding: 32px 20px 28px;
+      }
+      .card {
+        padding: 22px 18px;
+      }
+      .info-block {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 主视觉 -->
+    <div class="hero">
+      <div class="hero-badge">⚽ 观赛指南</div>
+      <h1>英超直播 · 简洁指引</h1>
+      <p>从赛程提醒到稳定入口，一份面向球迷的快速参考。无论你是长期关注还是偶尔追焦点战，都可按需查阅。</p>
+      <div class="meta-note">
+        📌 建议收藏或保存本文，后续可直接回到这里查找最新动态。
+      </div>
+    </div>
+
+    <!-- 信息卡片网格 -->
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>用途概述</h3>
+        <p>聚合英超赛事相关信息，提供实时比分、赛程提醒与直播导航。适合赛前快速确认场次，赛中关注关键动态。</p>
+        <span class="tag">赛程 · 比分 · 动态</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">👥</div>
+        <h3>适合人群</h3>
+        <ul>
+          <li>日常关注英超的球迷</li>
+          <li>需要快速找直播入口的用户</li>
+          <li>希望了解比赛背景与阵容的爱好者</li>
+          <li>偶尔看焦点战、不愿浪费时间搜索的人</li>
+        </ul>
+        <span class="tag">球迷 · 速查 · 轻量</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚙️</div>
+        <h3>使用特点</h3>
+        <p>界面简洁，信息层级清晰。无需注册或下载，打开即用。每轮更新重点场次，同时保留历史参考。</p>
+        <span class="tag">轻量 · 即时 · 无广告干扰</span>
+      </div>
+    </div>
+
+    <!-- 自然链接段落 + FAQ 摘要 -->
+    <div class="info-block">
+      <h2>关于访问与常用方式</h2>
+      <p>
+        对于大多数用户，直接通过浏览器打开 <a href="https://free-yingchaozhibo.com">英超直播</a> 即可进入页面，
+        无需额外安装插件或注册账号。该站点以信息聚合与导航为主，适合赛前快速浏览。
+        如果你习惯在移动端使用，建议保存到主屏幕，方便每周调用。
+      </p>
+      <p>
+        部分网络环境可能加载略慢，可尝试刷新或切换网络。页面不包含自动播放的视频流，
+        而是以文字与链接形式呈现，流量消耗极低。
+      </p>
+
+      <div class="faq-mini">
+        <div class="faq-item">
+          <strong>❓ 是否收费？</strong>
+          <span>该站点为免费信息聚合，不涉及付费订阅或会员。所有公开内容均可直接查看。</span>
+        </div>
+        <div class="faq-item">
+          <strong>❓ 赛程更新频率？</strong>
+          <span>通常每轮比赛前 24 小时完成更新，重要场次会追加阵容或伤停提示。偶尔因数据源调整略有延迟。</span>
+        </div>
+        <div class="faq-item">
+          <strong>❓ 移动端适配如何？</strong>
+          <span>页面采用响应式栅格与卡片布局，手机竖屏与平板均可正常浏览。部分表格内容建议横屏查看。</span>
+        </div>
+        <div class="faq-item">
+          <strong>❓ 是否支持多语言？</strong>
+          <span>目前以中文内容为主，包括球队名、联赛术语等均使用习惯译名，方便国内球迷阅读。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 访问提醒区块（自然嵌入链接） -->
+    <div class="access-note">
+      <p>
+        ⚡ 小提醒：每次开赛前 15 分钟，建议直接访问 <a href="https://free-yingchaozhibo.com">英超直播</a> 获取最新阵容与实时动态。
+        如果你遇到页面打不开或内容空白，可尝试清理浏览器缓存或更换 DNS，部分公共 Wi-Fi 可能限制外部资源加载。
+      </p>
+      <p style="margin-top: 10px;">
+        另外，页面并未绑定任何特定设备或账号，你可以在任意浏览器中打开同一地址，进度与设置不保留在云端，
+        属于轻量即用即走型工具。
+      </p>
+    </div>
+
+    <!-- 页脚（无链接，只有站点标识） -->
+    <div class="footer-meta">
+      free-yingchaozhibo.com · 信息聚合参考 · 仅供个人辅助使用
+    </div>
+  </div>
+</body>
+</html>
